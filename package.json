@@ -1,0 +1,80 @@
+{
+  "name": "secret-guard",
+  "displayName": "Secret Guard",
+  "description": "Real-time secret scanning with enterprise policies",
+  "version": "1.0.0",
+  "publisher": "jhafet cánepa",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:python",
+    "onLanguage:java",
+    "onLanguage:go",
+    "onLanguage:rust",
+    "onLanguage:ruby",
+    "onLanguage:php",
+    "onLanguage:csharp",
+    "onLanguage:json",
+    "onLanguage:yaml",
+    "onLanguage:dotenv",
+    "onLanguage:properties",
+    "onLanguage:shellscript",
+    "onLanguage:dockerfile"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Secret Guard",
+      "properties": {
+        "secretGuard.severity": {
+          "type": "string",
+          "default": "error",
+          "enum": [
+            "error",
+            "warning",
+            "info"
+          ],
+          "description": "Severity level for detected secrets"
+        },
+        "secretGuard.customPatterns": {
+          "type": "array",
+          "default": [],
+          "description": "Custom regex patterns: [{\"name\": \"MySecret\", \"pattern\": \"MYKEY_[A-Z0-9]+\"}]"
+        },
+        "secretGuard.ignorePaths": {
+          "type": "array",
+          "default": [
+            "**/node_modules/**",
+            "**/.git/**",
+            "**/dist/**"
+          ],
+          "description": "Glob patterns to ignore"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "secretGuard.scanWorkspace",
+        "title": "Secret Guard: Scan Workspace"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "watch": "esbuild src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@types/vscode": "^1.74.0",
+    "esbuild": "^0.19.0",
+    "typescript": "^5.0.0"
+  }
+}
