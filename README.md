@@ -1,4 +1,4 @@
-# Secret Guard
+# Secret Guardian
 
 A powerful VS Code extension for real-time detection of exposed secrets, API keys, and sensitive credentials in your codebase.
 
@@ -17,7 +17,7 @@ A powerful VS Code extension for real-time detection of exposed secrets, API key
 ### From VS Code Marketplace
 1. Open VS Code
 2. Press `Ctrl+P` / `Cmd+P`
-3. Type `ext install jhafetcanepa.secret-guard`
+3. Type `ext install jafcnepamace24.secret-guardian`
 4. Press Enter
 
 ### From Source
@@ -31,7 +31,7 @@ npm run build
 ## Quick Start
 
 1. Install the extension
-2. Open any code file - Secret Guard automatically starts scanning
+2. Open any code file - Secret Guardian automatically starts scanning
 3. Look for underlined text - Detected secrets appear as errors/warnings
 4. Check Problems panel (`Ctrl+Shift+M` / `Cmd+Shift+M`) for all findings
 
@@ -41,7 +41,7 @@ npm run build
 ```javascript
 // config.js - This will trigger a HIGH severity warning
 const config = {
-  awsAccessKey: "AKIA[EXAMPLE_KEY_HERE]",  // ← Secret Guard detects this pattern
+  awsAccessKey: "AKIA[EXAMPLE_KEY_HERE]",  // ← Secret Guardian detects this pattern
   region: "us-west-2"
 };
 ```
@@ -68,12 +68,12 @@ STRIPE_KEY=sk_live_[YOUR_STRIPE_KEY_HERE]  # ← Detected
 // auth.service.ts - This will trigger a MEDIUM severity warning
 const userCredentials = {
   username: "admin",
-  password: "[YOUR_PASSWORD_HERE]"  // ← Secret Guard detects password patterns
+  password: "[YOUR_PASSWORD_HERE]"  // ← Secret Guardian detects password patterns
 };
 ```
 **Result**: Warning underline with message "[MEDIUM] Potential Generic Secret detected"
 
-### What Secret Guard Shows You
+### What Secret Guardian Shows You
 
 When secrets are detected:
 1. **Red underline** (Error) - HIGH severity secrets
@@ -84,7 +84,7 @@ When secrets are detected:
 
 ## Detected Secrets
 
-Secret Guard can detect:
+Secret Guardian can detect:
 
 ### Cloud Providers
 - **AWS**: Access Keys, Secret Keys
@@ -117,7 +117,7 @@ Secret Guard can detect:
 
 ## Configuration
 
-Access settings via `File > Preferences > Settings` and search for "Secret Guard"
+Access settings via `File > Preferences > Settings` and search for "Secret Guardian"
 
 ### Core Settings
 
@@ -167,11 +167,11 @@ Exclude specific directories or files:
 
 | Command | Description | Shortcut |
 |---------|-------------|----------|
-| `Secret Guard: Scan Workspace` | Scan all files in the current workspace | Access via Command Palette (`Ctrl+Shift+P`) |
+| `Secret Guardian: Scan Workspace` | Scan all files in the current workspace | Access via Command Palette (`Ctrl+Shift+P`) |
 
 ## Architecture
 
-Secret Guard uses a modular architecture for maintainability and performance:
+Secret Guardian uses a modular architecture for maintainability and performance:
 
 ```
 src/
@@ -205,7 +205,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Privacy & Security
 
 - **Local Processing**: All scanning happens locally in your VS Code instance
-- **No Data Collection**: Secret Guard never sends your code or findings anywhere
+- **No Data Collection**: Secret Guardian never sends your code or findings anywhere
 - **Open Source**: Full source code available for security audit
 
 ## Support
