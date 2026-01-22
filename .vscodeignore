@@ -1,6 +1,16 @@
 .vscode/**
+.vscode-test/**
 node_modules/**
-src/**
+test-files/**
 .gitignore
+.git/**
+.github/**
 tsconfig.json
+package-lock.json
+src/**
 **/*.ts
+**/*.map
+*.vsix
+.eslintrc.json
+.prettierrc
+.editorconfig

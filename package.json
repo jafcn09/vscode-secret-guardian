@@ -2,31 +2,37 @@
   "name": "secret-guard",
   "displayName": "Secret Guard",
   "description": "Real-time secret scanning with enterprise policies",
-  "version": "1.0.0",
-  "publisher": "jhafet cánepa",
+  "version": "1.1.0",
+  "publisher": "jhafetcanepa",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jafcn09/vscode-secret-guardian"
+  },
+  "homepage": "https://github.com/jafcn09/vscode-secret-guardian#readme",
+  "bugs": {
+    "url": "https://github.com/jafcn09/vscode-secret-guardian/issues"
+  },
+  "keywords": [
+    "security",
+    "secrets",
+    "scanner",
+    "credentials",
+    "api-key",
+    "password",
+    "detector",
+    "linter"
+  ],
   "engines": {
     "vscode": "^1.74.0"
   },
-  "categories": [
-    "Linters",
-    "Other"
-  ],
+  "categories": ["Linters", "Other"],
   "activationEvents": [
-    "onLanguage:javascript",
-    "onLanguage:typescript",
-    "onLanguage:python",
-    "onLanguage:java",
-    "onLanguage:go",
-    "onLanguage:rust",
-    "onLanguage:ruby",
-    "onLanguage:php",
-    "onLanguage:csharp",
-    "onLanguage:json",
-    "onLanguage:yaml",
-    "onLanguage:dotenv",
-    "onLanguage:properties",
-    "onLanguage:shellscript",
-    "onLanguage:dockerfile"
+    "onStartupFinished",
+    "onCommand:secretGuard.scanWorkspace"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -36,26 +42,48 @@
         "secretGuard.severity": {
           "type": "string",
           "default": "error",
-          "enum": [
-            "error",
-            "warning",
-            "info"
-          ],
+          "enum": ["error", "warning", "info"],
           "description": "Severity level for detected secrets"
         },
         "secretGuard.customPatterns": {
           "type": "array",
           "default": [],
-          "description": "Custom regex patterns: [{\"name\": \"MySecret\", \"pattern\": \"MYKEY_[A-Z0-9]+\"}]"
+          "description": "Custom regex patterns",
+          "items": {
+            "type": "object",
+            "required": ["name", "pattern"],
+            "properties": {
+              "name": { "type": "string" },
+              "pattern": { "type": "string" },
+              "flags": { "type": "string" },
+              "severity": {
+                "type": "string",
+                "enum": ["HIGH", "MEDIUM", "LOW"]
+              }
+            }
+          }
         },
         "secretGuard.ignorePaths": {
           "type": "array",
-          "default": [
-            "**/node_modules/**",
-            "**/.git/**",
-            "**/dist/**"
-          ],
+          "default": ["**/node_modules/**", "**/.git/**", "**/dist/**", "**/out/**"],
           "description": "Glob patterns to ignore"
+        },
+        "secretGuard.maxFindingsPerFile": {
+          "type": "number",
+          "default": 200,
+          "minimum": 1,
+          "description": "Max findings per file"
+        },
+        "secretGuard.scanOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Scan when saving a file"
+        },
+        "secretGuard.debounceMs": {
+          "type": "number",
+          "default": 300,
+          "minimum": 50,
+          "description": "Debounce time for onChange scans"
         }
       }
     },
